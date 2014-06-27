@@ -24,20 +24,20 @@
 // This is ECMAScript code (ECMA-262 aka "Java Script")
 //
 var colorsMap = {
-// La
-'A':new QColor('red'),
-// Si
-'B':new QColor('blue'),
-// Do
-'C':new QColor('yellow'),
-// Re
-'D':new QColor('orange'),
-// Mi
-'E':new QColor('magenta'),
-// Fa
-'F':new QColor('gray'),
-// Sol
-'G':new QColor('green'),
+	// La
+	'A': new QColor('red'),
+	// Si
+	'B': new QColor('blue'),
+	// Do
+	'C': new QColor('yellow'),
+	// Re
+	'D': new QColor('orange'),
+	// Mi
+	'E': new QColor('magenta'),
+	// Fa
+	'F': new QColor('gray'),
+	// Sol
+	'G': new QColor('green'),
 };
 
 //---------------------------------------------------------
@@ -46,10 +46,9 @@ var colorsMap = {
 //---------------------------------------------------------
 
 
-function init()
-      {
-      // print("test script init");
-      }
+function init() {
+	// print("test script init");
+}
 
 //-------------------------------------------------------------------
 //    run
@@ -60,27 +59,26 @@ function init()
 //    pluginPath - contains the plugin path; file separator is "/"
 //-------------------------------------------------------------------
 
-function run()
-      {
-      if (typeof curScore === 'undefined')
-            return;
-      var cursor   = new Cursor(curScore);
-      cursor.staff = 0;
-      cursor.voice = 0;
-      cursor.rewind();  // set cursor to first chord/rest
+function run() {
+	if (typeof curScore === 'undefined')
+		return;
+	var cursor = new Cursor(curScore);
+	cursor.staff = 0;
+	cursor.voice = 0;
+	cursor.rewind(); // set cursor to first chord/rest
 
-      while (!cursor.eos()) {
-            if (cursor.isChord()) {
-                  var text  = new Text(curScore);
-				  var note = cursor.chord().topNote();
-				  text.text = note.name.charAt(0);
-				  text.color = new QColor(colorsMap[text.text]);
-                  text.yOffset = -5;
-                  cursor.putStaffText(text);
-                  }
-            cursor.next();
-            }
-      }
+	while (!cursor.eos()) {
+		if (cursor.isChord()) {
+			var text = new Text(curScore);
+			var note = cursor.chord().topNote();
+			text.text = note.name.charAt(0);
+			text.color = new QColor(colorsMap[text.text]);
+			text.yOffset = -5;
+			cursor.putStaffText(text);
+		}
+		cursor.next();
+	}
+}
 
 //---------------------------------------------------------
 //    menu:  defines were the function will be placed
@@ -88,10 +86,9 @@ function run()
 //---------------------------------------------------------
 
 var mscorePlugin = {
-      menu: 'Plugins.Nommer les notes',
-      init: init,
-      run:  run
-      };
+	menu: 'Plugins.Nommer les notes',
+	init: init,
+	run: run
+};
 
 mscorePlugin;
-
